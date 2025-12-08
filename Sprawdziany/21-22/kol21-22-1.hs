@@ -8,7 +8,6 @@ atDistance (vertices, f) d v =
 -- ==========================================
 -- 2. DANE TESTOWE (PRZYKŁADOWY GRAF)
 -- ==========================================
--- Definiujemy wierzchołki: 1, 2, 3, 4, 5, 6
 wierzcholki :: [Int]
 wierzcholki = [1, 2, 3, 4, 5, 6]
 
@@ -24,17 +23,13 @@ wierzcholki = [1, 2, 3, 4, 5, 6]
 listaKrawedzi :: [(Int, Int)]
 listaKrawedzi = [(1,2), (1,3), (2,4), (3,4), (4,5), (5,6), (6,1)]
 
--- Funkcja pomocnicza, która mówi czy jest krawędź (zgodna z Twoim typem)
 czyJestKrawedz :: Int -> Int -> Bool
 czyJestKrawedz a b = (a, b) `elem` listaKrawedzi
 
--- Składamy to w całość
 mojGrafTestowy :: DirectedGraph
 mojGrafTestowy = (wierzcholki, czyJestKrawedz)
 
--- ==========================================
--- 3. URUCHOMIENIE (MAIN)
--- ==========================================
+
 main :: IO ()
 main = do
     putStrLn "--- Testowanie funkcji atDistance ---"
