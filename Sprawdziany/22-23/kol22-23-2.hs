@@ -1,0 +1,1 @@
+wyniki :: Double -> [(String,Double)] -> [(String,String)]

@@ -1,0 +1,1 @@
+data Wr a = Wr [[a]] Integer

@@ -1,0 +1,25 @@
+dzielniki :: (Int, [Int]) -> [Int]
+
+-- Warunek bazowy: Jeśli lista potencjalnych dzielników jest pusta, zwróć pustą listę.
+-- W praktyce ten przypadek jest użyty do inicjalizacji (dzielniki (x, [1])),
+-- gdzie lista nie jest pusta, więc ten przypadek jest rzadko osiągany.
+dzielniki (_, []) = []
+
+-- Główny przypadek rekurencyjny:
+-- x to liczba, y to aktualny testowany dzielnik, ys to akumulator (dzielniki znalezione dotychczas)
+dzielniki (x, y:ys)
+    -- Warunek stopu 1: Osiągnęliśmy lub przekroczyliśmy pierwiastek kwadratowy z x.
+    -- Zwracamy zgromadzone dzielniki (ys) po uwzględnieniu elementu y, jeśli x jest kwadratem liczby całkowitej.
+    | y * y > x  = ys  -- Zwraca akumulator (zs)
+    
+    -- Warunek stopu 2: Jeśli y^2 = x, to y jest ostatnim dzielnikiem, który musi być dodany raz.
+    -- Zwracamy y połączone z akumulatorem ys.
+    | y * y == x = y : ys
+    
+    -- Krok rekurencyjny: Znaleziono parę dzielników (y oraz x/y).
+    -- UWAGA: Ten kod ZAWSZE doda x/y i y do akumulatora, włączając w to 1 i x.
+    | x `mod` y == 0 = dzielniki (x, (y+1) : y : (x `div` y) : ys)
+    -- y + 1 to następny testowany, y i x/y to nowe znalezione dzielniki wypisane na liste nasza, a ys to pozostałe 
+    
+    -- Krok rekurencyjny: Nie znaleziono dzielnika.
+    | otherwise = dzielniki (x, (y+1) : ys)
